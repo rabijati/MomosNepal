@@ -7,6 +7,11 @@
 
 {% block content %}
   
+<style>
+   .active_ho{
+      background-color: #f76d37 !important;
+   }
+</style>
 
    <!-- banner section start -->
    <div class="banner_section layout_padding">
@@ -149,146 +154,33 @@
    <div class="card text-center tab-titles-class" >
       <h1>Top Items</h1>
       <h3 style="margin-bottom: 30px;">Here's our top items for today:</h3>
-      <div class="container">
+      <div class="container" id="cate">
          <ul class="tab-titles text-center">
-            <li class="tab-links menu-title active" >Buff</li>
-            <li class="tab-links menu-title">Chicken</li>
-            <li class="tab-links menu-title">Veg</li>
+            {% for i in cate %}
+            <a href="?category={{i.id}}#cate"><li class="tab-links menu-title {% if request.GET.category == i.id|stringformat:'s' %}
+              
+               active_ho {% endif %}" >{{i.title}}</li></a>
+            {% endfor %}
+            
          </ul>
       </div>
 
       <div class="tab-content active-tab">
          <div class="container">
             <div class="row">
+               {% for i in momo  %}
                <div class="col-md-4 menu-item">
                   <div class="row-md-4">
                      <p>
-                        <img src="{% static 'images/steam_buff.jpg' %}">
-                     </p>
-
-                  </div>
-                     <div class="row-md-2">
-                        <span>Buff Steam Momo</span>
-                        <div class="card-price">रु120</div>
-                     </div>
-   
-               </div>
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/buff_fried.jpg' %}">
-                     </p>
-                  </div>
-                  <div class="row-md-4">
-                     <span>Buff Fried Momo</span>
-                     <div class="card-price">रु130</div>
-                  </div>
-               </div>
-               <div class="col-md-4 menu-item">
-                  
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/buff_momo.jpeg' %} ">
-                     </p>
-                  </div>
-                  <div class="row-md-4">
-                     <span>Buff Chilly momo</span>
-                     <div class="card-price">रु200</div>
-                  </div>
-               </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="tab-content">
-         <div class="container text-center">
-            <div class="row">
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/chicken_steam.jpg' %}">
+                        <img src="{{i.image.url}}">
                      </p>
                   </div>
                      <div class="row-md-2">
-                        <span>Chicken Steam Momo</span>
-                        <div class="card-price">रु150</div>
-                     </div>
-   
-               </div>
-
-
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/chicken_fried.jpg' %}">
-                     </p>
-
-                  </div>
-                     <div class="row-md-2">
-                        <span>Chicken Fried Momo</span>
-                        <div class="card-price">रु180</div>
-                     </div>
-   
-               </div>
-   
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/chicken_c.jpg' %}">
-                     </p>
-
-                  </div>
-                     <div class="row-md-2">
-                        <span>Chicken Chilly momo</span>
-                        <div class="card-price">रु200</div>
+                        <span>{{i.name}}</span>
+                        <div class="card-price">{{i.price}}</div>
                      </div>
                </div>
-            </div>
-         </div>
-      </div>
-
-      <div class="tab-content">
-         <div class="container text-center">
-            <div class="row">
-
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/steam_veg.jpg' %}">
-                     </p>
-                  </div>
-                     <div class="row-md-2">
-                        <span>Veg Steam Momo</span>
-                        <div class="card-price">रु100</div>
-                     </div>
-   
-               </div>
-
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/veg_fried.jpg' %}">
-                     </p>
-                  </div>
-                     <div class="row-md-2">
-                        <span>Veg Fried Momo</span>
-                        <div class="card-price">रु110</div>
-                     </div>
-   
-               </div>
-
-               <div class="col-md-4 menu-item">
-                  <div class="row-md-4">
-                     <p>
-                        <img src="{% static 'images/veg_momo.jpg' %}">
-                     </p>
-                  </div>
-                     <div class="row-md-2">
-                        <span>Veg Chilly Momo</span>
-                        <div class="card-price">रु110</div>
-                     </div>
-   
-               </div>
+               {% endfor %}   
             </div>
          </div>
       </div>
